@@ -1,25 +1,27 @@
 const express = require("express");
 const serverless = require("serverless-http");
-const cors = require('cors');
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
-const router = express.Router();
-
 app.use(cors());
 
+const router = express.Router();
 
-router.get("/", (req, res) => {
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+router.get("/", cors(), (req, res) => {
   res.json({
     hello: "hi!"
   });
 });
 
-router.get("/test", (req, res) => {
+router.get("/test", cors(), (req, res) => {
   res.json({
     hello: "how to test!"
   });
 });
-
 
 app.use(`/.netlify/functions/api`, router);
 app.use(`/.netlify/functions/api/test`, router);
