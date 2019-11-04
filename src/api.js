@@ -20,7 +20,7 @@ router.get("/", cors(), (req, res) => {
 
 router.get("/test", cors(), (req, res) => {
   res.json({
-    hello: "how to test!"
+    hello: "how to test 001!"
   });
 });
 
